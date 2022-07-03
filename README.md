@@ -1,5 +1,7 @@
 ## 5 week - RSSchool - Graphql Service task
 
+### Description
+
 ### Installation
 
 1. Clone repo(ssh or https)
@@ -13,3 +15,18 @@ or
 `npm install`
 
 ## Usage
+
+Copy `env.example` to `.env`
+
+### Running the app
+
+```bash
+# development
+$ npm run start
+
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod
+```

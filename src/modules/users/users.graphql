@@ -1,0 +1,32 @@
+type User {
+  id: ID!
+  firstName: String
+  secondName: String
+  password: String
+  email: String
+}
+
+type JWT {
+  jwt: String!
+}
+
+input GetJWTInput {
+  email: String
+  password: String
+}
+
+input CreateUserInput {
+  firstName: String
+  lastName: String
+  password: String
+  email: String
+}
+
+type Query {
+  user(id: String!): User
+  jwt(getJWTInput: GetJWTInput!): JWT
+}
+
+type Mutation {
+  register(createUserInput: CreateUserInput!): User!
+}
