@@ -2,21 +2,29 @@
 
 ### Description
 
-Nest.js/Typescript/Apollo
+BFF app built with Nestjs/Typescript/Apollo
 
 ### Installation
 
 1. Clone repo(ssh or https)
 
-`git clone git@github.com:baradatbiu/nodejs-graphql.git`
+```sh
+
+git clone git@github.com:baradatbiu/nodejs-graphql.git
+```
 
 or
 
-`git clone https://github.com/baradatbiu/nodejs-graphql.git`
+```sh
+
+git clone https://github.com/baradatbiu/nodejs-graphql.git
+```
 
 2. Install dependencies
 
-`npm install`
+```sh
+npm install
+```
 
 ## Usage
 
@@ -24,13 +32,20 @@ Copy `env.example` to `.env`
 
 ### Running the app
 
+development
+
 ```bash
-# development
-$ npm run start
+npm run start
+```
 
-# watch mode
-$ npm run start:dev
+watch mode
 
-# production mode
-$ npm run start:prod
+```bash
+npm run start:dev
+```
+
+production mode
+
+```bash
+npm run start:prod
 ```
