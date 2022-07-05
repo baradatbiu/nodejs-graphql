@@ -6,6 +6,11 @@ type Genre {
   year: Int
 }
 
+type DeleteGenreResponse {
+  acknowledged: Boolean
+  deletedCount: Int
+}
+
 input CreateGenreInput {
   name: String
   description: String
@@ -14,7 +19,7 @@ input CreateGenreInput {
 }
 
 input UpdateGenreInput {
-  id: String!
+  id: ID!
   name: String
   description: String
   country: String
@@ -24,11 +29,6 @@ input UpdateGenreInput {
 type Query {
   genre(id: String!): Genre
   genres: [Genre]!
-}
-
-type DeleteGenreResponse {
-  acknowledged: Boolean
-  deletedCount: Int
 }
 
 type Mutation {

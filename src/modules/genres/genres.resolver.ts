@@ -8,7 +8,7 @@ export class GenresResolver {
   constructor(private readonly genresService: GenresService) {}
 
   @Mutation('createGenre')
-  createGenre(
+  create(
     @Args('createGenreInput') createGenreInput: CreateGenreInput,
     @Context() ctx,
   ) {
@@ -16,7 +16,7 @@ export class GenresResolver {
   }
 
   @Mutation('updateGenre')
-  updateGenre(
+  update(
     @Args('updateGenreInput') updateGenreInput: UpdateGenreInput,
     @Context() ctx,
   ) {
@@ -24,7 +24,7 @@ export class GenresResolver {
   }
 
   @Mutation('deleteGenre')
-  deleteGenre(@Args('id') id: string, @Context() ctx) {
+  delete(@Args('id') id: string, @Context() ctx) {
     return this.genresService.delete(id, ctx.token);
   }
 
