@@ -3,6 +3,8 @@ export const mapIDField = (object) => {
 
   object.id = object._id;
   delete object._id;
+
+  return object;
 };
 
 export const mapUserFields = (user) => {

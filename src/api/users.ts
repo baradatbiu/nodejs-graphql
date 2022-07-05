@@ -18,7 +18,7 @@ export class UsersAPI extends BaseAPI {
     }
   }
 
-  async getUser(id: string) {
+  async getById(id: string) {
     try {
       return await this.get(encodeURIComponent(id));
     } catch (error) {

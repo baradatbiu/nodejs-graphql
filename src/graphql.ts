@@ -7,6 +7,21 @@
 
 /* tslint:disable */
 /* eslint-disable */
+export interface CreateGenreInput {
+    name?: Nullable<string>;
+    description?: Nullable<string>;
+    country?: Nullable<string>;
+    year?: Nullable<number>;
+}
+
+export interface UpdateGenreInput {
+    id: string;
+    name?: Nullable<string>;
+    description?: Nullable<string>;
+    country?: Nullable<string>;
+    year?: Nullable<number>;
+}
+
 export interface GetJWTInput {
     email?: Nullable<string>;
     password?: Nullable<string>;
@@ -19,6 +34,33 @@ export interface CreateUserInput {
     email?: Nullable<string>;
 }
 
+export interface Genre {
+    id: string;
+    name?: Nullable<string>;
+    description?: Nullable<string>;
+    country?: Nullable<string>;
+    year?: Nullable<number>;
+}
+
+export interface IQuery {
+    genre(id: string): Nullable<Genre> | Promise<Nullable<Genre>>;
+    genres(): Nullable<Genre>[] | Promise<Nullable<Genre>[]>;
+    user(id: string): Nullable<User> | Promise<Nullable<User>>;
+    jwt(getJWTInput: GetJWTInput): Nullable<JWT> | Promise<Nullable<JWT>>;
+}
+
+export interface DeleteGenreResponse {
+    acknowledged?: Nullable<boolean>;
+    deletedCount?: Nullable<number>;
+}
+
+export interface IMutation {
+    createGenre(createGenreInput: CreateGenreInput): Genre | Promise<Genre>;
+    updateGenre(updateGenreInput: UpdateGenreInput): Genre | Promise<Genre>;
+    deleteGenre(id: string): Nullable<DeleteGenreResponse> | Promise<Nullable<DeleteGenreResponse>>;
+    register(createUserInput: CreateUserInput): User | Promise<User>;
+}
+
 export interface User {
     id: string;
     firstName?: Nullable<string>;
@@ -29,15 +71,6 @@ export interface User {
 
 export interface JWT {
     jwt: string;
-}
-
-export interface IQuery {
-    user(id: string): Nullable<User> | Promise<Nullable<User>>;
-    jwt(getJWTInput: GetJWTInput): Nullable<JWT> | Promise<Nullable<JWT>>;
-}
-
-export interface IMutation {
-    register(createUserInput: CreateUserInput): User | Promise<User>;
 }
 
 type Nullable<T> = T | null;

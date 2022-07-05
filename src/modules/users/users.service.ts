@@ -15,16 +15,12 @@ export class UsersService {
   }
 
   async findOne(id: string) {
-    const user = await this.usersAPI.getUser(id);
+    const user = await this.usersAPI.getById(id);
 
     return mapUserFields({ ...user });
   }
 
   async getJWT(getJWTInput: GetJWTInput) {
-    const jwt = await this.usersAPI.getJWT(getJWTInput);
-
-    this.usersAPI.context.token = jwt.jwt;
-
-    return jwt;
+    return await this.usersAPI.getJWT(getJWTInput);
   }
 }

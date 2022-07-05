@@ -26,7 +26,7 @@ git clone https://github.com/baradatbiu/nodejs-graphql.git
 npm install
 ```
 
-## Usage
+### Usage
 
 Copy `env.example` to `.env`
 

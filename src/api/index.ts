@@ -16,7 +16,7 @@ export class BaseAPI extends RESTDataSource {
       request.body = { ...request.body };
     }
 
-    if (!this.context?.token) return;
+    if (!this.context.token) return;
 
     request.headers.set('Authorization', this.context.token);
   }
