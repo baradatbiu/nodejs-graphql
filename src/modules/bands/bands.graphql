@@ -21,10 +21,16 @@ type DeleteBandResponse {
   deletedCount: Int
 }
 
+input CreateMemberInput {
+  artist: String
+  instrument: String
+  years: [String]
+}
+
 input CreateBandInput {
   name: String
   origin: String
-  membersIds: [ID]
+  members: [CreateMemberInput]
   website: String
   genresIds: [ID]
 }
@@ -33,7 +39,7 @@ input UpdateBandInput {
   id: ID!
   name: String
   origin: String
-  membersIds: [ID]
+  members: [CreateMemberInput]
   website: String
   genresIds: [ID]
 }

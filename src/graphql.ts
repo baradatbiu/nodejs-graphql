@@ -51,10 +51,16 @@ export interface UpdateArtistInput {
     instruments?: Nullable<Nullable<string>[]>;
 }
 
+export interface CreateMemberInput {
+    artist?: Nullable<string>;
+    instrument?: Nullable<string>;
+    years?: Nullable<Nullable<string>[]>;
+}
+
 export interface CreateBandInput {
     name?: Nullable<string>;
     origin?: Nullable<string>;
-    membersIds?: Nullable<Nullable<string>[]>;
+    members?: Nullable<Nullable<CreateMemberInput>[]>;
     website?: Nullable<string>;
     genresIds?: Nullable<Nullable<string>[]>;
 }
@@ -63,7 +69,7 @@ export interface UpdateBandInput {
     id: string;
     name?: Nullable<string>;
     origin?: Nullable<string>;
-    membersIds?: Nullable<Nullable<string>[]>;
+    members?: Nullable<Nullable<CreateMemberInput>[]>;
     website?: Nullable<string>;
     genresIds?: Nullable<Nullable<string>[]>;
 }
