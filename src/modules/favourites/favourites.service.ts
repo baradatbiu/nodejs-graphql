@@ -1,29 +1,32 @@
+import { BaseAPI } from './../../api/index';
 import { mapIDField } from './../../utils/mapObjectFields';
-import { FavouritesAPI } from './../../api/favourites';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class FavouritesService {
-  constructor(private readonly favouritesAPI: FavouritesAPI) {}
+export class FavouritesService extends BaseAPI {
+  constructor() {
+    super();
+    this.baseURL = process.env.FAVOURITES_API_URL;
+  }
 
   async findAll() {
-    const { items: favourites } = await this.favouritesAPI.getAll();
+    const { items: favourites } = await this.get('');
 
     return favourites.map((favourite) => mapIDField({ ...favourite }));
   }
 
   async add({ id, type }: { id: string; type: string }, token: string) {
-    this.favouritesAPI.context.token = token;
+    this.context.token = token;
 
-    const favourite = await this.favouritesAPI.add({ id, type });
+    const favourite = await this.put('add', { id, type });
 
     return mapIDField({ ...favourite });
   }
 
   async remove({ id, type }: { id: string; type: string }, token: string) {
-    this.favouritesAPI.context.token = token;
+    this.context.token = token;
 
-    const favourite = await this.favouritesAPI.remove({ id, type });
+    const favourite = await this.put('remove', { id, type });
 
     return mapIDField({ ...favourite });
   }
