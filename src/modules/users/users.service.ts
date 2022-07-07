@@ -1,26 +1,41 @@
+import { BaseAPI } from './../../api/index';
 import { mapUserFields } from './../../utils/mapObjectFields';
-import { UsersAPI } from './../../api/users';
 import { Injectable } from '@nestjs/common';
 import { CreateUserInput } from './dto/create-user.input';
 import { GetJWTInput } from './dto/get-jwt.input';
 
 @Injectable()
-export class UsersService {
-  constructor(private readonly usersAPI: UsersAPI) {}
+export class UsersService extends BaseAPI {
+  constructor() {
+    super();
+    this.baseURL = process.env.USERS_API_URL;
+  }
 
   async create(createUserInput: CreateUserInput) {
-    const user = await this.usersAPI.register(createUserInput);
+    try {
+      const user = await this.post('register', createUserInput);
 
-    return mapUserFields({ ...user });
+      return mapUserFields({ ...user });
+    } catch (error) {
+      console.log('API_ERROR', error);
+    }
   }
 
   async findOne(id: string) {
-    const user = await this.usersAPI.getById(id);
+    try {
+      const user = await this.get(encodeURIComponent(id));
 
-    return mapUserFields({ ...user });
+      return mapUserFields({ ...user });
+    } catch (error) {
+      console.log('API_ERROR', error);
+    }
   }
 
   async getJWT(getJWTInput: GetJWTInput) {
-    return await this.usersAPI.getJWT(getJWTInput);
+    try {
+      return await this.post('login', getJWTInput);
+    } catch (error) {
+      console.log('API_ERROR', error);
+    }
   }
 }

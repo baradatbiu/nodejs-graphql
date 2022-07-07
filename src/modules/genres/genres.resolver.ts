@@ -25,7 +25,7 @@ export class GenresResolver {
 
   @Mutation('deleteGenre')
   delete(@Args('id') id: string, @Context() ctx) {
-    return this.genresService.delete(id, ctx.token);
+    return this.genresService.remove(id, ctx.token);
   }
 
   @Query('genre')

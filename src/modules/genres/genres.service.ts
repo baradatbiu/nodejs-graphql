@@ -1,47 +1,70 @@
-import { GenresAPI } from './../../api/genres';
+import { BaseAPI } from './../../api/index';
 import { mapIDField } from './../../utils/mapObjectFields';
 import { CreateGenreInput } from './dto/create-genre.input';
 import { UpdateGenreInput } from './dto/update-genre.input';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class GenresService {
-  constructor(private readonly genresAPI: GenresAPI) {}
+export class GenresService extends BaseAPI {
+  constructor() {
+    super();
+    this.baseURL = process.env.GENRES_API_URL;
+  }
 
   async create(createGenreInput: CreateGenreInput, token: string) {
-    this.genresAPI.context.token = token;
+    try {
+      this.context.token = token;
 
-    const genre = await this.genresAPI.create(createGenreInput);
+      const genre = await this.post('', createGenreInput);
 
-    return mapIDField({ ...genre });
+      return mapIDField({ ...genre });
+    } catch (error) {
+      console.log('API_ERROR', error);
+    }
   }
 
   async findOne(id: string) {
-    const genre = await this.genresAPI.getById(id);
+    try {
+      const genre = await this.get(encodeURIComponent(id));
 
-    return mapIDField({ ...genre });
+      return mapIDField({ ...genre });
+    } catch (error) {
+      console.log('API_ERROR', error);
+    }
   }
 
   async findAll() {
-    const { items: genres } = await this.genresAPI.getAll();
+    try {
+      const { items: genres } = await this.get('');
 
-    return genres.map((genre) => mapIDField({ ...genre }));
+      return genres.map((genre) => mapIDField({ ...genre }));
+    } catch (error) {
+      console.log('API_ERROR', error);
+    }
   }
 
   async update(updateGenreInput: UpdateGenreInput, token: string) {
-    this.genresAPI.context.token = token;
+    try {
+      this.context.token = token;
 
-    const genre = await this.genresAPI.update(
-      updateGenreInput.id,
-      updateGenreInput,
-    );
+      const genre = await this.put(
+        encodeURIComponent(updateGenreInput.id),
+        updateGenreInput,
+      );
 
-    return mapIDField({ ...genre });
+      return mapIDField({ ...genre });
+    } catch (error) {
+      console.log('API_ERROR', error);
+    }
   }
 
-  async delete(id: string, token: string) {
-    this.genresAPI.context.token = token;
+  async remove(id: string, token: string) {
+    try {
+      this.context.token = token;
 
-    return await this.genresAPI.remove(id);
+      return await this.delete(encodeURIComponent(id));
+    } catch (error) {
+      console.log('API_ERROR', error);
+    }
   }
 }
