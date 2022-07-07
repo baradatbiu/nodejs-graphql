@@ -12,7 +12,7 @@ export interface CreateAlbumInput {
     released?: Nullable<number>;
     artistsIds?: Nullable<Nullable<string>[]>;
     bandsIds?: Nullable<Nullable<string>[]>;
-    tracksIds?: Nullable<Nullable<string>[]>;
+    trackIds?: Nullable<Nullable<string>[]>;
     genresIds?: Nullable<Nullable<string>[]>;
     image?: Nullable<string>;
 }
@@ -23,7 +23,7 @@ export interface UpdateAlbumInput {
     released?: Nullable<number>;
     artistsIds?: Nullable<Nullable<string>[]>;
     bandsIds?: Nullable<Nullable<string>[]>;
-    tracksIds?: Nullable<Nullable<string>[]>;
+    trackIds?: Nullable<Nullable<string>[]>;
     genresIds?: Nullable<Nullable<string>[]>;
     image?: Nullable<string>;
 }

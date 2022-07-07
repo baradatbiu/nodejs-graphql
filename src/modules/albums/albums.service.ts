@@ -1,47 +1,50 @@
-import { AlbumsAPI } from './../../api/albums';
+import { BaseAPI } from './../../api/index';
 import { mapIDField } from './../../utils/mapObjectFields';
 import { Injectable } from '@nestjs/common';
 import { CreateAlbumInput } from './dto/create-album.input';
 import { UpdateAlbumInput } from './dto/update-album.input';
 
 @Injectable()
-export class AlbumsService {
-  constructor(private readonly albumsAPI: AlbumsAPI) {}
+export class AlbumsService extends BaseAPI {
+  constructor() {
+    super();
+    this.baseURL = process.env.ALBUMS_API_URL;
+  }
 
   async create(createAlbumInput: CreateAlbumInput, token: string) {
-    this.albumsAPI.context.token = token;
+    this.context.token = token;
 
-    const genre = await this.albumsAPI.create(createAlbumInput);
+    const genre = await this.post('', createAlbumInput);
 
     return mapIDField({ ...genre });
   }
 
   async findOne(id: string) {
-    const genre = await this.albumsAPI.getById(id);
+    const genre = await this.get(encodeURIComponent(id));
 
     return mapIDField({ ...genre });
   }
 
   async findAll() {
-    const { items: albums } = await this.albumsAPI.getAll();
+    const { items: albums } = await this.get('');
 
     return albums.map((genre) => mapIDField({ ...genre }));
   }
 
   async update(updateAlbumInput: UpdateAlbumInput, token: string) {
-    this.albumsAPI.context.token = token;
+    this.context.token = token;
 
-    const genre = await this.albumsAPI.update(
-      updateAlbumInput.id,
+    const genre = await this.put(
+      encodeURIComponent(updateAlbumInput.id),
       updateAlbumInput,
     );
 
     return mapIDField({ ...genre });
   }
 
-  async delete(id: string, token: string) {
-    this.albumsAPI.context.token = token;
+  async remove(id: string, token: string) {
+    this.context.token = token;
 
-    return await this.albumsAPI.remove(id);
+    return await this.delete(encodeURIComponent(id));
   }
 }
