@@ -33,10 +33,11 @@ export class BandsService extends BaseAPI {
     }
   }
 
-  async findAll() {
+  async findAll(limit: number, offset: number) {
     try {
-      const { items: bands } = await this.get('');
-
+      const { items: bands } = await this.get('/', {
+        params: { limit, offset },
+      });
       return bands.map((band) => mapIDField({ ...band }));
     } catch (error) {
       console.log('API_ERROR', error);

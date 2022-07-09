@@ -34,8 +34,11 @@ export class TracksResolver {
   }
 
   @Query('tracks')
-  findAll() {
-    return this.tracksService.findAll();
+  findAll(
+    @Args('limit', { defaultValue: 5 }) limit: number,
+    @Args('offset', { defaultValue: 0 }) offset: number,
+  ) {
+    return this.tracksService.findAll(limit, offset);
   }
 
   @Query('track')

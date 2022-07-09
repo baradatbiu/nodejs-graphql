@@ -1,8 +1,8 @@
 export const mapIDField = (object) => {
-  if (!object._id) return;
-
-  object.id = object._id;
-  delete object._id;
+  if (object._id) {
+    object.id = object._id;
+    delete object._id;
+  }
 
   return object;
 };

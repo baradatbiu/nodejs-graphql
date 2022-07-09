@@ -33,9 +33,11 @@ export class ArtistsService extends BaseAPI {
     }
   }
 
-  async findAll() {
+  async findAll(limit: number, offset: number) {
     try {
-      const { items: artists } = await this.get('');
+      const { items: artists } = await this.get('/', {
+        params: { limit, offset },
+      });
 
       return artists.map((artist) => mapIDField({ ...artist }));
     } catch (error) {

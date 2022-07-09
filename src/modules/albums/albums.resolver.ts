@@ -34,8 +34,11 @@ export class AlbumsResolver {
   }
 
   @Query('albums')
-  findAll() {
-    return this.albumsService.findAll();
+  findAll(
+    @Args('limit', { defaultValue: 5 }) limit: number,
+    @Args('offset', { defaultValue: 0 }) offset: number,
+  ) {
+    return this.albumsService.findAll(limit, offset);
   }
 
   @Query('album')

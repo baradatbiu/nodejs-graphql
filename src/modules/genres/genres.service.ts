@@ -33,9 +33,11 @@ export class GenresService extends BaseAPI {
     }
   }
 
-  async findAll() {
+  async findAll(limit: number, offset: number) {
     try {
-      const { items: genres } = await this.get('');
+      const { items: genres } = await this.get('/', {
+        params: { limit, offset },
+      });
 
       return genres.map((genre) => mapIDField({ ...genre }));
     } catch (error) {

@@ -4,16 +4,16 @@ type Favourite {
   bands: [Band]
   genres: [Genre]
   artists: [Artist]
-  tracks: [Band]
+  tracks: [Track]
 }
 
 type Query {
-  favourites: [Favourite]!
+  favourites: Favourite!
 }
 
 type Mutation {
-  addTrackToFavourites(addFavouriteInput: ID!): Favourite!
-  addBandToFavourites(addFavouriteInput: ID!): Favourite!
-  addArtistToFavourites(addFavouriteInput: ID!): Favourite!
-  addGenreToFavourites(addFavouriteInput: ID!): Favourite!
+  addTrackToFavourites(id: String!): Favourite!
+  addBandToFavourites(id: String!): Favourite!
+  addArtistToFavourites(id: String!): Favourite!
+  addGenreToFavourites(id: String!): Favourite!
 }

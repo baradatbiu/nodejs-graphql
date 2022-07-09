@@ -9,10 +9,12 @@ export class FavouritesService extends BaseAPI {
     this.baseURL = process.env.FAVOURITES_API_URL;
   }
 
-  async findAll() {
-    const { items: favourites } = await this.get('');
+  async findAll(token: string) {
+    this.context.token = token;
 
-    return favourites.map((favourite) => mapIDField({ ...favourite }));
+    const favourite = await this.get('');
+
+    return mapIDField({ ...favourite });
   }
 
   async add({ id, type }: { id: string; type: string }, token: string) {

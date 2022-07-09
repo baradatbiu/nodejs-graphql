@@ -25,8 +25,10 @@ export class TracksService extends BaseAPI {
     return mapIDField({ ...genre });
   }
 
-  async findAll() {
-    const { items: tracks } = await this.get('');
+  async findAll(limit: number, offset: number) {
+    const { items: tracks } = await this.get('/', {
+      params: { limit, offset },
+    });
 
     return tracks.map((genre) => mapIDField({ ...genre }));
   }

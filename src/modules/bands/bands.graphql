@@ -45,7 +45,7 @@ input UpdateBandInput {
 }
 
 type Query {
-  bands: [Band]!
+  bands(limit: Int, offset: Int): [Band]!
   band(id: String!): Band
 }
 

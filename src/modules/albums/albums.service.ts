@@ -25,8 +25,10 @@ export class AlbumsService extends BaseAPI {
     return mapIDField({ ...genre });
   }
 
-  async findAll() {
-    const { items: albums } = await this.get('');
+  async findAll(limit: number, offset: number) {
+    const { items: albums } = await this.get('/', {
+      params: { limit, offset },
+    });
 
     return albums.map((genre) => mapIDField({ ...genre }));
   }

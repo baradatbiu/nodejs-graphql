@@ -28,8 +28,11 @@ export class ArtistsResolver {
   }
 
   @Query('artists')
-  findAll() {
-    return this.artistsService.findAll();
+  findAll(
+    @Args('limit', { defaultValue: 5 }) limit: number,
+    @Args('offset', { defaultValue: 0 }) offset: number,
+  ) {
+    return this.artistsService.findAll(limit, offset);
   }
 
   @Query('artist')
