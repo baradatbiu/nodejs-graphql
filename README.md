@@ -74,7 +74,7 @@ mutation register($createUserInput: CreateUserInput!) {
 }
 ```
 
-Input example
+_Input example_
 
 ```json
 {
@@ -287,7 +287,6 @@ _HTTP Headers_
     userId
     bands {
       id
-      website
     }
     genres {
       id
