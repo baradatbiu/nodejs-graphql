@@ -58,9 +58,9 @@ http://localhost:3000/graphql
 
 ### Modules
 
-#### Users
+#### - Users
 
-Mutation - register
+**Mutation - register**
 
 ```graphql
 mutation register($createUserInput: CreateUserInput!) {
@@ -87,7 +87,7 @@ Input example
 }
 ```
 
-Query - user
+**Query - user**
 
 ```graphql
 {
@@ -101,7 +101,7 @@ Query - user
 }
 ```
 
-Query - jwt
+**Query - jwt**
 
 ```graphql
 {
@@ -111,9 +111,9 @@ Query - jwt
 }
 ```
 
-#### Genres
+#### - Genres
 
-Mutation - createGenre
+**Mutation - createGenre**
 
 ```graphql
 mutation createGenre($createGenreInput: CreateGenreInput!) {
@@ -127,7 +127,7 @@ mutation createGenre($createGenreInput: CreateGenreInput!) {
 }
 ```
 
-Query variables
+_Input example_
 
 ```json
 {
@@ -140,7 +140,7 @@ Query variables
 }
 ```
 
-HTTP Headers
+_HTTP Headers_
 
 ```json
 {
@@ -148,7 +148,7 @@ HTTP Headers
 }
 ```
 
-Mutation - updateGenre
+**Mutation - updateGenre**
 
 ```graphql
 mutation updateGenre($updateGenreInput: UpdateGenreInput!) {
@@ -161,7 +161,7 @@ mutation updateGenre($updateGenreInput: UpdateGenreInput!) {
 }
 ```
 
-Query variables
+_Input example_
 
 ```json
 {
@@ -175,14 +175,15 @@ Query variables
 }
 ```
 
-HTTP Headers
+_HTTP Headers_
 
-````json
+```json
 {
   "Authorization": "Bearer {token_string}"
 }
+```
 
-Mutation - deleteGenre
+**Mutation - deleteGenre**
 
 ```graphql
 mutation deleteGenre($id: String!) {
@@ -191,9 +192,9 @@ mutation deleteGenre($id: String!) {
     deletedCount
   }
 }
-````
+```
 
-Query variables
+_Input example_
 
 ```json
 {
@@ -201,14 +202,15 @@ Query variables
 }
 ```
 
-HTTP Headers
+_HTTP Headers_
 
-````json
+```json
 {
   "Authorization": "Bearer {token_string}"
 }
+```
 
-Query - genres
+**Query - genres**
 
 ```graphql
 {
@@ -220,9 +222,9 @@ Query - genres
     year
   }
 }
-````
+```
 
-Query - genre
+**Query - genre**
 
 ```graphql
 {
@@ -235,9 +237,9 @@ Query - genre
 }
 ```
 
-#### Favourites
+#### - Favourites
 
-Mutation - addBandToFavourites
+**Mutation - addBandToFavourites**
 
 ```graphql
 mutation addBandToFavourites($id: String!) {
@@ -260,7 +262,7 @@ mutation addBandToFavourites($id: String!) {
 }
 ```
 
-Query variables
+_Input example_
 
 ```json
 {
@@ -268,7 +270,7 @@ Query variables
 }
 ```
 
-HTTP Headers
+_HTTP Headers_
 
 ```json
 {
@@ -276,7 +278,7 @@ HTTP Headers
 }
 ```
 
-Query - favourites
+**Query - favourites**
 
 ```graphql
 {
@@ -300,7 +302,7 @@ Query - favourites
 }
 ```
 
-HTTP Headers
+_HTTP Headers_
 
 ```json
 {
@@ -308,6 +310,6 @@ HTTP Headers
 }
 ```
 
-#### Artists/Tracks/Bands/Albums/Favourites
+#### - Artists/Tracks/Bands/Albums/Favourites
 
 You can use docs in graphql playground for these modules
